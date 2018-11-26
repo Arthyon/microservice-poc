@@ -1,0 +1,35 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Service 1 (node)",
+      "port": 9229, // Port is port number exposed in docker-compose.override.yml
+      "address": "localhost",
+      "localRoot": "${workspaceFolder}/service1", // service1 is physical path to service
+      "remoteRoot": "/app",
+      "protocol": "inspector",
+      "sourceMaps": true
+    },
+    {
+      "name": "Service 2 (.net)",
+      "type": "coreclr",
+      "request": "attach",
+      "sourceFileMap": {
+        "/code/app": "${workspaceRoot}/service2" // service2 is physical path to service
+      },
+      "processId": "${command:pickRemoteProcess}",
+      "pipeTransport": {
+        "debuggerPath": "/vsdbg/vsdbg",
+        "pipeProgram": "docker",
+        "pipeCwd": "${workspaceRoot}",
+        "quoteArgs": false,
+        "pipeArgs": ["exec -i service2"] // service2 is container_name from docker-compose.yml
+      }
+    }
+  ]
+}

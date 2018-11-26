@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  service1:
+    build:
+      # Override dockerfile using dev (set up for volume mount etc)
+      dockerfile: Dockerfile-dev
+    # Dev only: Mount a local directory to directory in container to share files without rebuilding image
+    volumes:
+      - ./service1:/app
+    # Dev only: Expose debug port out of container ecosystem
+    ports:
+      - "9229:9229"
+
+  service2:
+    build:
+      # Override dockerfile using dev (set up for volume mount etc)
+      dockerfile: Dockerfile-dev
+    # Mount the src directory in container
+    volumes:
+      - ./service2/src:/code/app

@@ -1,0 +1,16 @@
+FROM keymetrics/pm2:8-alpine
+
+RUN mkdir -p /app
+
+WORKDIR /app
+
+COPY package.json /app
+COPY yarn.lock /app
+COPY tsconfig.json /app
+COPY pm2.json /app
+
+RUN yarn --frozen-lockfile
+RUN mv /app/node_modules /node_modules
+## DEVELOPMENT MODE
+ENV NODE_ENV=development
+CMD ["yarn", "docker-dev"]

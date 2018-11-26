@@ -1,0 +1,14 @@
+{
+  "apps": [
+    {
+      "name": "service1",
+      "script": "./dist/server.js",
+      "node_args": ["--inspect=0.0.0.0:9229"],
+      "exec_mode": "fork",
+      "source_map_support": true,
+      "env": {
+        "NODE_ENV": "development"
+      }
+    }
+  ]
+}
