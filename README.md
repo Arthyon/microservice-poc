@@ -96,11 +96,39 @@ This section describes the special considerations needed to set up a new service
 
 ## Node
 
+TODO
+
 ## .Net
+
+TODO
 
 # Deploying
 
 `docker-compose -f docker-compose.yml` up to not use override.
+
+# Troubleshooting
+
+Various issues that can be encountered when testing this PoC.
+
+## On windows: Issues with volume mounting
+
+This can manifest itself in many different ways, but the two usual ways are:
+_A firewall is blocking file Sharing between Windows and the containers_ when sharing the C-drive and various issues when starting containers like tsc not finding any source files.
+
+To set up sharing from scratch:
+
+- Ensure no shares are requested in Docker settings (UI) -> Shared Drives
+- Click `Reset Credentials`
+- Click `Apply`
+- Ensure that the C-drive (or whichever drive you're using) is NOT shared
+- Create a local Windows user in Computer Management, password should never expire.
+- Find the docker adapter's IP using `ipconfig` (it is usually named DockerNAT)
+- Check the Shared-boxes in Docker Shared drive settings
+- You are prompted for a user, enter ip-address\username and the password you chose
+
+After each restart the adapter is usually in a faulty state, so it is necessary to run the powershell command `Set-NetConnectionProfile -InterfaceAlias "<adapter name>" -NetworkCategory Private` where adapter name is the name from the ipconfig-command. For example `vEthernet (DockerNAT)`.
+
+May also turn off and on file sharing on the adapter.
 
 # Notes on hot reload+debug in node containers
 
