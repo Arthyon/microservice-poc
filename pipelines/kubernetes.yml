@@ -17,6 +17,8 @@ spec:
       containers:
         - name: service1
           image: #{dockerId}.azurecr.io/service1:#{RELEASE_ARTIFACTS__SERVICE1_BUILDID}
+      imagePullSecrets:
+        - name: regsecret
 ---
 apiVersion: apps/v1beta1
 kind: Deployment
@@ -32,3 +34,5 @@ spec:
       containers:
         - name: service2
           image: #{dockerId}.azurecr.io/service2:#{RELEASE_ARTIFACTS__SERVICE2_BUILDID}
+      imagePullSecrets:
+        - name: regsecret
