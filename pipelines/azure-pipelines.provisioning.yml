@@ -1,0 +1,12 @@
+pool:
+  vmImage: "Ubuntu 16.04"
+
+steps:
+  - task: CopyFiles@2
+    inputs:
+      contents: pipelines/kubernetes.yml
+      targetFolder: $(Build.ArtifactStagingDirectory)
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: $(Build.ArtifactStagingDirectory)
+      artifactName: provisioning
