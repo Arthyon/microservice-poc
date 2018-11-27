@@ -31,4 +31,4 @@ spec:
     spec:
       containers:
         - name: service2
-          image: #{dockerId}.azurecr.io/service2:#{Release.Artifacts.Service2.Buildid}"
+          image: #{dockerId}.azurecr.io/service2:#{RELEASE_ARTIFACTS__SERVICE2_BUILDID}"
