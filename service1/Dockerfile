@@ -31,6 +31,8 @@ RUN yarn test
 # Create release image based on official pm2-image
 FROM keymetrics/pm2:${NODE_VERSION}-alpine AS release
 
+EXPOSE 8001
+
 # Put everything in a new directory to avoid polluting /
 WORKDIR /app
 
