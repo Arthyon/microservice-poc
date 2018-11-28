@@ -14,6 +14,7 @@ steps:
     inputs:
       useDefaultContext: false
       buildContext: "./$(sourceRoot)"
+      dockerFile: "./$(sourceRoot)/Dockerfile"
       imageName: "$(imageName)"
 
   # Log in to private container repository using pre-registered Service Principal
