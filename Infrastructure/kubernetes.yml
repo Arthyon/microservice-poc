@@ -22,7 +22,7 @@ spec:
       hostname: service1
       containers:
         - name: service1
-          image: #{dockerId}.azurecr.io/service1:#{RELEASE_ARTIFACTS__SERVICE1_BUILDNUMBER}
+          image: #{registryName}/service1:#{RELEASE_ARTIFACTS__SERVICE1_BUILDNUMBER}
           ports:
             - containerPort: 8001
       imagePullSecrets:
@@ -47,7 +47,7 @@ spec:
       hostname: service2
       containers:
         - name: service2
-          image: #{dockerId}.azurecr.io/service2:#{RELEASE_ARTIFACTS__SERVICE2_BUILDNUMBER}
+          image: #{registryName}/service2:#{RELEASE_ARTIFACTS__SERVICE2_BUILDNUMBER}
           ports:
             - containerPort: 80
       imagePullSecrets:
@@ -71,7 +71,7 @@ spec:
     spec:
       containers:
         - name: gateway
-          image: #{dockerId}.azurecr.io/gateway:#{RELEASE_ARTIFACTS__GATEWAY_BUILDNUMBER}
+          image: #{registryName}/gateway:#{RELEASE_ARTIFACTS__GATEWAY_BUILDNUMBER}
           ports:
             - containerPort: 80
           env:
