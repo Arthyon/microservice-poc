@@ -18,6 +18,8 @@ RUN dotnet publish -c Release -o out
 # Create a new build stage with a slimmer production-ready image
 FROM microsoft/dotnet:${DOTNET_VERSION}-aspnetcore-runtime
 
+# Expose port 80 out of the container
+EXPOSE 80
 # Set /app as current directory
 WORKDIR /app
 

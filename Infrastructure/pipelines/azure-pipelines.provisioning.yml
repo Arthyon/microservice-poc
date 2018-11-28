@@ -1,0 +1,17 @@
+pool:
+  vmImage: "Ubuntu 16.04"
+
+# This is actually the build number format specifier
+name: $(Date:yyyyMMdd)$(Rev:.r)
+
+steps:
+  # Task to copy kubernetes configuration to artifact directory
+  - task: CopyFiles@2
+    inputs:
+      contents: Infrastructure/kubernetes.yml
+      targetFolder: $(Build.ArtifactStagingDirectory)
+  # Task to publish artifact directory (making them available in deploy)
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: $(Build.ArtifactStagingDirectory)
+      artifactName: provisioning
