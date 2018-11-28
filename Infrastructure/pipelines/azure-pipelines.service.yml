@@ -9,10 +9,29 @@ variables:
   imageName: "$(registryName)/$(serviceName):$(build.buildNumber)"
 steps:
   # Build the image specified in current builds Devops variable
-  - script: docker build -t $(imageName) ./$(sourceRoot)
-    displayName: "Build service image: $(serviceName)"
-  # Log in to private container registry and push built image
-  - script: |
-      docker login -u $(dockerId) -p $(pswd) $(registryName)
-      docker push $(imageName)
+  - task: Docker@1
+    displayName: "Build service image $(serviceName)"
+    inputs:
+      buildContext: "./$(sourceRoot)"
+      imageName: "$(imageName)"
+
+  # Log in to private container repository using pre-registered Service Principal
+  - task: Docker@1
+    displayName: "Log in to private container repository"
+    inputs:
+      azureSubscriptionEndpoint: "NG Azure Microservice Poc"
+      azureContainerRegistry: "$(registryName)"
+      command: "login"
+
+  - task: Docker@1
     displayName: "Push image"
+    inputs:
+      command: "push"
+      imageName: "$(imageName)"
+  # - script: docker build -t $(imageName) ./$(sourceRoot)
+  #   displayName: "Build service image: $(serviceName)"
+  # # Log in to private container registry and push built image
+  # - script: |
+  #     docker login -u $(dockerId) -p $(pswd) $(registryName)
+  #     docker push $(imageName)
+  #   displayName: "Push image"
