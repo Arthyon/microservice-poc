@@ -18,7 +18,7 @@ spec:
       namespace: #{Release.EnvironmentName}
       labels:
         app: service1
-        version: #{RELEASE_ARTIFACTS__SERVICE1_BUILDNUMBER}
+        version: "#{RELEASE_ARTIFACTS__SERVICE1_BUILDNUMBER}"
     spec:
       hostname: service1
       containers:
@@ -44,7 +44,7 @@ spec:
       namespace: #{Release.EnvironmentName}
       labels:
         app: service2
-        version: #{RELEASE_ARTIFACTS__SERVICE2_BUILDNUMBER}
+        version: "#{RELEASE_ARTIFACTS__SERVICE2_BUILDNUMBER}"
     spec:
       hostname: service2
       containers:
@@ -70,7 +70,7 @@ spec:
       namespace: #{Release.EnvironmentName}
       labels:
         app: gateway
-        version: #{RELEASE_ARTIFACTS__GATEWAY_BUILDNUMBER}
+        version: "#{RELEASE_ARTIFACTS__GATEWAY_BUILDNUMBER}"
     spec:
       containers:
         - name: gateway
