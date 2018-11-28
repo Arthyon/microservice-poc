@@ -12,6 +12,7 @@ steps:
   - task: Docker@1
     displayName: "Build service image $(serviceName)"
     inputs:
+      useDefaultContext: false
       buildContext: "./$(sourceRoot)"
       imageName: "$(imageName)"
 
