@@ -10,6 +10,9 @@ services:
     # Map port 5000 on local machine to port 80 in container
     ports:
       - "5000:80"
+    # Set environment to Preproduction for now
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Preproduction
 
   service1:
     # Gives container a friendly name

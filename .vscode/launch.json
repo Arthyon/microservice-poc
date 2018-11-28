@@ -20,7 +20,7 @@
       "type": "coreclr",
       "request": "attach",
       "sourceFileMap": {
-        "/code/app": "${workspaceRoot}/service2" // service2 is physical path to service
+        "/code/app": "${workspaceRoot}/service2/src" // service2 is physical path to service
       },
       "processId": "${command:pickRemoteProcess}",
       "pipeTransport": {

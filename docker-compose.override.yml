@@ -1,6 +1,10 @@
 version: "3.7"
 
 services:
+  gateway:
+    # Set environment to Development to load correct config file
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
   service1:
     build:
       # Override dockerfile using dev (set up for volume mount etc)

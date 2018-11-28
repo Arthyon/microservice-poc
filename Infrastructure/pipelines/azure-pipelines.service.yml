@@ -1,26 +1,32 @@
 pool:
   vmImage: "Ubuntu 16.04"
+
 # This is actually the build number format specifier
 name: $(Date:yyyyMMdd)$(Rev:.r)
 
 # Create intermediate variables based on variables set in Azure Devops
 variables:
-  registryName: "$(dockerId).azurecr.io"
   imageName: "$(registryName)/$(serviceName):$(build.buildNumber)"
 steps:
   # Build the image specified in current builds Devops variable
   - task: Docker@1
     displayName: "Build service image $(serviceName)"
     inputs:
+      # useDefaultContext false makes it possible to specify buildContext
       useDefaultContext: false
+      # Setting buildcontext to source of current service
+      # This executes the Dockerfile with this as the working directory
       buildContext: "./$(sourceRoot)"
+      # Have to specify path to dockerfile since multiple dockerfiles exist in repo
       dockerFile: "./$(sourceRoot)/Dockerfile"
+      # Specify name and version of the final image
       imageName: "$(imageName)"
 
   # Log in to private container repository using pre-registered Service Principal
   - task: Docker@1
     displayName: "Log in to private container repository"
     inputs:
+      # This is the name of a Azure Resource Manager Service Principal
       azureSubscriptionEndpoint: "NG Azure Microservice Poc"
       azureContainerRegistry: "$(registryName)"
       command: "login"
@@ -30,10 +36,3 @@ steps:
     inputs:
       command: "push"
       imageName: "$(imageName)"
-  # - script: docker build -t $(imageName) ./$(sourceRoot)
-  #   displayName: "Build service image: $(serviceName)"
-  # # Log in to private container registry and push built image
-  # - script: |
-  #     docker login -u $(dockerId) -p $(pswd) $(registryName)
-  #     docker push $(imageName)
-  #   displayName: "Push image"

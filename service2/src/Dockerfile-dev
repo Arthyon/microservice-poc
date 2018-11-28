@@ -16,7 +16,7 @@ RUN apt-get update \
 WORKDIR /code/app
 
 # By copying these into the image when building it, we don't have to re-run restore everytime we launch a new container
-COPY service3.csproj .
+COPY service2.csproj .
 COPY Directory.Build.props .
 RUN dotnet restore
 

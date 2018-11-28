@@ -19,7 +19,15 @@ namespace gateway
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration((ctx, config) => config.AddJsonFile("ocelot.json"))
+            .ConfigureAppConfiguration(LoadConfigurationFromFile)
             .UseStartup<Startup>();
+
+        static void LoadConfigurationFromFile(WebHostBuilderContext ctx, IConfigurationBuilder config)
+        {
+            config
+                .AddJsonFile("ocelot.json")
+                .AddJsonFile($"ocelot.{ctx.HostingEnvironment.EnvironmentName}.json")
+                .AddEnvironmentVariables();
+        }
     }
 }
