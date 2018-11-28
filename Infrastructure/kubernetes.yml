@@ -71,7 +71,7 @@ spec:
     spec:
       containers:
         - name: gateway
-          image: #{dockerId}.azurecr.io/service1:#{RELEASE_ARTIFACTS__GATEWAY_BUILDNUMBER}
+          image: #{dockerId}.azurecr.io/gateway:#{RELEASE_ARTIFACTS__GATEWAY_BUILDNUMBER}
           ports:
             - containerPort: 80
       imagePullSecrets:
