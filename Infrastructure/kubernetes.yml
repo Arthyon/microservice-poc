@@ -75,7 +75,8 @@ spec:
           ports:
             - containerPort: 80
           env:
-            - name: ASPNETCORE_ENVIRONMENT=${dotnetenvironment}
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "#{dotnetenvironment}"
       imagePullSecrets:
         - name: regsecret
 ---
