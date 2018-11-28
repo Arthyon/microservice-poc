@@ -1,0 +1,18 @@
+pool:
+  vmImage: "Ubuntu 16.04"
+# This is actually the build number format specifier
+name: $(Date:yyyyMMdd)$(Rev:.r)
+
+# Create intermediate variables based on variables set in Azure Devops
+variables:
+  registryName: "$(dockerId).azurecr.io"
+  imageName: "$(registryName)/$(serviceName):$(build.buildNumber)"
+steps:
+  # Build the image specified in current builds Devops variable
+  - script: docker build -t $(imageName) ./$(sourceRoot)
+    displayName: "Build service image: $(serviceName)"
+  # Log in to private container registry and push built image
+  - script: |
+      docker login -u $(dockerId) -p $(pswd) $(registryName)
+      docker push $(imageName)
+    displayName: "Push image"

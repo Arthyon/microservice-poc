@@ -20,7 +20,5 @@ COPY service3.csproj .
 COPY Directory.Build.props .
 RUN dotnet restore
 
-# TODO Add multi stage build to create lean production image
-
 # This will build and launch the server in a loop, restarting whenever a *.cs file changes
 ENTRYPOINT dotnet watch run --no-restore
