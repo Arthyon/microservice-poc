@@ -10,7 +10,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/service1/{url}",
-      "UpstreamHttpMethod": ["Get"]
+      "UpstreamHttpMethod": ["Get", "Post", "Put", "Options"]
     },
     {
       "DownstreamPathTemplate": "/{url}",
@@ -27,6 +27,18 @@
         "AuthenticationProviderKey": "TestKey",
         "AllowedScopes": []
       }
+    },
+    {
+      "DownstreamPathTemplate": "/{url}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "platform-rest-preprod.ngdata.no",
+          "Port": "443"
+        }
+      ],
+      "UpstreamPathTemplate": "/{url}",
+      "UpstreamHttpMethod": ["Get", "Post", "Put", "Options"]
     }
   ]
 }

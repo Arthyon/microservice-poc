@@ -25,8 +25,8 @@ namespace gateway
         static void LoadConfigurationFromFile(WebHostBuilderContext ctx, IConfigurationBuilder config)
         {
             config
+                // .AddJsonFile($"ocelot.{ctx.HostingEnvironment.EnvironmentName}.json")
                 .AddJsonFile("ocelot.json")
-                .AddJsonFile($"ocelot.{ctx.HostingEnvironment.EnvironmentName}.json")
                 .AddEnvironmentVariables();
         }
     }

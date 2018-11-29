@@ -10,7 +10,8 @@
         }
       ],
       "UpstreamPathTemplate": "/{url}",
-      "UpstreamHttpMethod": ["Get", "Post", "Put", "Options"]
+      "UpstreamHttpMethod": ["Get", "Post", "Put", "Options"],
+      "Priority": 0
     }
   ],
   "GlobalConfiguration": {
