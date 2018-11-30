@@ -36,3 +36,16 @@ steps:
     inputs:
       command: "push"
       imageName: "$(imageName)"
+
+  - powershell: |
+      Write-Host "git tag $env:tag"
+      git -c http.extraheader="AUTHORIZATION: bearer $env:SYSTEM_ACCESSTOKEN" tag $env:tag
+      git -c http.extraheader="AUTHORIZATION: bearer $env:SYSTEM_ACCESSTOKEN" push origin $env:tag
+    displayName: Tag build in git
+    workingDirectory: $(Build.SourcesDirectory)
+    env:
+      tag: "$(serviceName)-$(build.buildNumber)"
+      SYSTEM_ACCESSTOKEN: $(system.accesstoken)
+    ignoreLASTEXITCODE: false
+    errorActionPreference: Stop
+    failOnStderr: false
