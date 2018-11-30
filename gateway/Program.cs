@@ -7,6 +7,8 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Ocelot.DependencyInjection;
 
 namespace gateway
 {
@@ -25,9 +27,8 @@ namespace gateway
         static void LoadConfigurationFromFile(WebHostBuilderContext ctx, IConfigurationBuilder config)
         {
             config
-                // .AddJsonFile($"ocelot.{ctx.HostingEnvironment.EnvironmentName}.json")
-                .AddJsonFile("ocelot.json")
-                .AddEnvironmentVariables();
+                .AddOcelot("routes", ctx.HostingEnvironment)
+                .AddIniFile($"env.{ctx.HostingEnvironment.EnvironmentName}.ini");
         }
     }
 }
