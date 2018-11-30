@@ -39,8 +39,8 @@ steps:
 
   - powershell: |
       Write-Host "git tag $env:tag"
-      git -c http.extraheader="AUTHORIZATION: bearer $env:SYSTEM_ACCESSTOKEN" tag $env:tag
-      git -c http.extraheader="AUTHORIZATION: bearer $env:SYSTEM_ACCESSTOKEN" push origin $env:tag
+      git -c http.extraheader="AUTHORIZATION: basic $env:SYSTEM_ACCESSTOKEN" tag $env:tag
+      git -c http.extraheader="AUTHORIZATION: basic $env:SYSTEM_ACCESSTOKEN" push origin $env:tag
     displayName: Tag build in git
     workingDirectory: $(Build.SourcesDirectory)
     env:
