@@ -6,7 +6,7 @@ const app = express();
 app.use("/user/:user_id", (req, res) => {
   return res
     .status(200)
-    .json({ test: "dwadwa2", usr: req.params.user_id, headers: req.headers });
+    .json({ test: "dwadwa3", usr: req.params.user_id, headers: req.headers });
 });
 app.use("/test", (req, res) => {
   return res.status(200).send("test");
