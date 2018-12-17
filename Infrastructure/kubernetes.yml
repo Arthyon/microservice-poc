@@ -99,11 +99,9 @@ metadata:
   name: service2
   namespace: #{Release.EnvironmentName}
 spec:
-  type: NodePort
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8001
   selector:
     app: service2
 
@@ -114,10 +112,8 @@ metadata:
   name: service1
   namespace: #{Release.EnvironmentName}
 spec:
-  type: NodePort
   ports:
     - protocol: TCP
       port: 8001
-      targetPort: 8001
   selector:
     app: service1
