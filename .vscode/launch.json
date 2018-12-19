@@ -8,7 +8,7 @@
       "type": "node",
       "request": "attach",
       "name": "Service 1 (node)",
-      "port": 9229, // Port is port number exposed in docker-compose.override.yml
+      "port": 30006, // Port is port number exposed in docker-compose.override.yml
       "address": "localhost",
       "localRoot": "${workspaceFolder}/service1", // service1 is physical path to service
       "remoteRoot": "/app",
@@ -24,11 +24,22 @@
       },
       "processId": "${command:pickRemoteProcess}",
       "pipeTransport": {
-        "debuggerPath": "/vsdbg/vsdbg",
-        "pipeProgram": "docker",
-        "pipeCwd": "${workspaceRoot}",
-        "quoteArgs": false,
-        "pipeArgs": ["exec -i service2"] // service2 is container_name from docker-compose.yml
+        "windows": {
+          "pipeProgram": "powershell",
+          "pipeArgs": [".vscode\\dotnet-win-debug.ps1"], // To debug correctly here we actually need to edit the script :(
+          "quoteArgs": false
+        },
+        "linux": {
+          "pipeProgram": "bash",
+          "pipeArgs": [
+            "./dotnet-linux-debug.sh",
+            "--selector app=service2",
+            "--namespace default"
+          ],
+          "quoteArgs": false
+        },
+        "pipeCwd": "${workspaceFolder}",
+        "debuggerPath": "/vsdbg/vsdbg"
       }
     }
   ]

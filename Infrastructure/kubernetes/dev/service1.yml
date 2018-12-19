@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: service1
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: service1
+    spec:
+      containers:
+        - name: service1
+          imagePullPolicy: Never
+          image: microservices/service1
+          ports:
+            - containerPort: 8001
+            - containerPort: 9229
+          volumeMounts:
+            - mountPath: /app
+              name: code
+      volumes:
+        - name: code
+          hostPath:
+            path: /host_mnt/c/Source/Platform/Microservice-test/service1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service1
+spec:
+  selector:
+    app: service1
+  ports:
+    - name: app-port
+      port: 8001
+      nodePort: 30005
+    - name: debug-port
+      port: 9229
+      nodePort: 30006
+  type: NodePort

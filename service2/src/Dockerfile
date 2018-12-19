@@ -1,30 +1,26 @@
-# Set dotnet version in variable
 ARG DOTNET_VERSION=2.1
-# Use fat build image as our build stage
-FROM microsoft/dotnet:${DOTNET_VERSION}-sdk AS build-env
-# Set /app as current directory
-WORKDIR /app
+FROM microsoft/dotnet:${DOTNET_VERSION}-sdk as build
 
-# Copy csproj-file (where nuget-packages are referenced)
-COPY *.csproj ./
-# Restore nuget packages
+# Required inside Docker, otherwise file-change events may not trigger
+ENV DOTNET_USE_POLLING_FILE_WATCHER 1
+ENV ASPNETCORE_ENVIRONMENT=Development
+ENV DOTNET_RUNNING_IN_CONTAINER=true
+
+# Installing vsdbg debugger into our container 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+    unzip \
+    && rm -rf /var/lib/apt/lists/* \
+    && curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l /vsdbg
+
+# Set a working dir at least 2 deep. The output and intermediate output folders will be /code/obj and /code/bin
+WORKDIR /code/app
+
+# By copying these into the image when building it, we don't have to re-run restore everytime we launch a new container
+COPY service2.csproj .
+COPY Directory.Build.props .
 RUN dotnet restore
 
-# Copy the rest of the source
-COPY . ./
-# Build and publish a release version
-RUN dotnet publish -c Release -o out
-
-# Create a new build stage with a slimmer production-ready image
-FROM microsoft/dotnet:${DOTNET_VERSION}-aspnetcore-runtime
-
-# Expose port 80 out of the container
-EXPOSE 80
-# Set /app as current directory
-WORKDIR /app
-
-# Copy output of publish-command in previous stage to new image 
-COPY --from=build-env /app/out .
-
-# Set default command for image to run service
-ENTRYPOINT ["dotnet", "service2.dll"] 
+# This will build and launch the server in a loop, restarting whenever a *.cs file changes
+# ENTRYPOINT dotnet watch run --no-restore
+CMD ["dotnet", "watch", "run", "--no-restore"]

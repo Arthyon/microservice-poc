@@ -1,0 +1,38 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: service2
+  labels:
+    version: "#{RELEASE_ARTIFACTS__SERVICE2_BUILDNUMBER}"
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      namespace: #{Release.EnvironmentName}
+      labels:
+        app: service2
+    spec:
+      hostname: service2
+      containers:
+        - name: service2
+          image: #{registryName}/service2:#{RELEASE_ARTIFACTS__SERVICE2_BUILDNUMBER}
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: regsecret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service2
+  namespace: #{Release.EnvironmentName}
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+  selector:
+    app: service2
