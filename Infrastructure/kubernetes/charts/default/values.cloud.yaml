@@ -1,0 +1,27 @@
+# This is run by our CI system for deployment to Azure
+inAzure: true
+# Information about Azure Container Registry Secrets
+# Used to authenticate when pulling images
+registry:
+  secretName: regSecret
+
+# Pull new images if not present
+imagePullPolicy: IfNotPresent
+
+# Specify internal port to reach our cluster (the ingress)
+ingress:
+  nodePort: 30010
+
+# Service 1 Prod specific settings
+service1:
+  # Run multiple replicas in prod
+  replicas: 2
+  # Which version of the service. Used as a label
+  version: "#{RELEASE_ARTIFACTS__SERVICE1_BUILDNUMBER}"
+  # Which image to use. Must exist in Azure Container Registry
+  image: #{registryName}/service1:#{RELEASE_ARTIFACTS__SERVICE1_BUILDNUMBER}
+
+service2:
+  replicas: 2
+  version: "#{RELEASE_ARTIFACTS__SERVICE2_BUILDNUMBER}"
+  image: #{registryName}/service2:#{RELEASE_ARTIFACTS__SERVICE2_BUILDNUMBER}

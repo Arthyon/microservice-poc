@@ -2,62 +2,52 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: nginx-ingress-config
-  namespace: default
+  namespace: {{.Release.Namespace}}
 data:
   ssl-redirect: "false"
   hsts: "false"
   disable-ipv6: "true"
-
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: my-ingress
+  namespace: {{.Release.Namespace}}
+  name: default-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    {{- if .Values.inAzure}}
     service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+    {{- end}}
 spec:
-  rules:
+  rules: 
     - http:
         paths:
-          - path: /api/service2/
-            backend:
-              serviceName: service2
-              servicePort: 80
-          - path: /api/service1
-            backend:
-              serviceName: service1
-              servicePort: 8001
+          {{- include "default.ingress.paths" . | nindent 10 }}
 ---
 kind: Service
 apiVersion: v1
 metadata:
-  # namespace: preprod
+  namespace: {{.Release.Namespace}}
   name: ingress-nginx
 spec:
   type: NodePort
-  # type: LoadBalancer
   selector:
     app: ingress-nginx
   ports:
     - name: http
       port: 80
-      # targetPort: http
-      nodePort: 30010
-  # - name: https
-  #   port: 443
-  #   targetPort: https
+      nodePort: {{.Values.ingress.nodePort}}
 ---
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
-  # namespace: preprod
+  namespace: {{.Release.Namespace}}
   name: ingress-nginx
 spec:
   replicas: 1
   template:
     metadata:
-      # namespace: preprod
+      namespace: {{.Release.Namespace}}
       labels:
         app: ingress-nginx
     spec:
@@ -70,9 +60,6 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
-          #    - name: https
-          #      containerPort: 443
-          #      protocol: TCP
           livenessProbe:
             httpGet:
               path: /healthz
@@ -92,13 +79,12 @@ spec:
           args:
             - /nginx-ingress-controller
             - --default-backend-service=default/nginx-default-backend
-            # - --configmap=preprod/nginx-ingress-config
-            - --configmap=default/nginx-ingress-config
+            - --configmap={{.Release.Namespace}}/nginx-ingress-config
 ---
 kind: Service
 apiVersion: v1
 metadata:
-  # namespace: preprod
+  namespace: {{.Release.Namespace}}
   name: nginx-default-backend
 spec:
   ports:
@@ -110,13 +96,13 @@ spec:
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
-  # namespace: preprod
+  namespace: {{.Release.Namespace}}
   name: nginx-default-backend
 spec:
   replicas: 1
   template:
     metadata:
-      # namespace: preprod
+      namespace: {{.Release.Namespace}}
       labels:
         app: nginx-default-backend
     spec:

@@ -1,0 +1,43 @@
+# We don't need azure specific settings in dev
+inAzure: false
+
+# Forces Kubernetes to fetch from local docker repo
+imagePullPolicy: Never
+# Create a file 'local.yaml' and set this to the correct base path for your machine
+mountBasePath: "Please set in local.yaml"
+
+# Can change public port. This is the port used to call all services
+ingress:
+  nodePort: 30010
+
+# Service 1 Dev specific settings
+service1:
+  version: dev
+  # Name of the created image using 'docker build'
+  image: microservices/service1
+  # We need to use NodePort in dev to expose debug port
+  type: NodePort
+  # List of ports to expose
+  ports:
+    - name: debug-port
+      port: 9229
+      nodePort: 30006 # This is the port used when attaching debugger. Should be unique across all services
+  # To enable frictionless developing, we must mount local volume in container
+  localVolume:
+    # Path to mount inside container. Specified in Dockerfile
+    containerPath: /app
+    # Local path from root of project to mount
+    localPath: service1
+    # A unique identifier
+    mountName: code
+
+# Service 2 Dev specific settings
+service2:
+  # CSharp services does not need to expose ports. Debugging works differently
+  version: dev
+  image: microservices/service2
+  # Specify volume mount information
+  localVolume:
+    containerPath: /code/app
+    localPath: service2/src
+    mountName: code

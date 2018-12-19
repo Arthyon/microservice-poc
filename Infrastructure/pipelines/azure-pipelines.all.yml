@@ -1,8 +1,0 @@
-pool:
-  vmImage: "Ubuntu 16.04"
-
-# Build and test the whole system
-# TODO With the switch to Kubernetes, how to do this?
-steps:
-  - script: docker-compose -f docker-compose.yml build
-    displayName: "Build and test"
