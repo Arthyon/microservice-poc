@@ -8,10 +8,10 @@
       "type": "node",
       "request": "attach",
       "name": "Service 1 (node)",
-      "port": 30006, // Port is port number exposed in docker-compose.override.yml
+      "port": 30006, // Port is port number exposed in values.dev.yaml
       "address": "localhost",
       "localRoot": "${workspaceFolder}/service1", // service1 is physical path to service
-      "remoteRoot": "/app",
+      "remoteRoot": "/app", // remoteRoot is path inside container (see Dockerfile)
       "protocol": "inspector",
       "sourceMaps": true
     },
