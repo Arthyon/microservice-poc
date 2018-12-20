@@ -20,6 +20,10 @@ service1:
   version: "#{RELEASE_ARTIFACTS__SERVICE1_BUILDNUMBER}"
   # Which image to use. Must exist in Azure Container Registry
   image: #{registryName}/service1:#{RELEASE_ARTIFACTS__SERVICE1_BUILDNUMBER}
+  # Since we needed to override ports in dev, we must specify in cloud config
+  ports:
+    - protocol: TCP
+      port: 8001
 
 service2:
   replicas: 2
