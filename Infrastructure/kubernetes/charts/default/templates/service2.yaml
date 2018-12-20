@@ -1,0 +1,46 @@
+{{- $mount := dict "val" .Values.service2 "basePath" .Values.mountBasePath -}}
+{{- with .Values.service2 }}
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: service2
+  labels:
+    version: {{ .version | quote}}
+spec:
+  replicas: {{ .replicas | default 1 }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      namespace: {{ $.Release.Namespace }}
+      labels:
+        app: service2
+    spec:
+      hostname: service2
+      containers:
+        - name: service2
+          imagePullPolicy: {{ $.Values.imagePullPolicy }}
+          image: {{ .image }}
+          ports:
+            - containerPort: 80
+          {{- include "default.volumeMounts" $mount | nindent 10 -}}
+      {{- include "default.volumes" $mount | nindent 6 -}}
+      {{- if $.Values.inAzure }}  
+      imagePullSecrets:
+        - name: {{ $.Values.registry.secretName }}
+      {{- end }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service2
+  namespace: {{ $.Release.Namespace }}
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+  selector:
+    app: service2
+{{- end }}

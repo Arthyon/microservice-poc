@@ -18,7 +18,7 @@ steps:
       # This executes the Dockerfile with this as the working directory
       buildContext: "./$(sourceRoot)"
       # Have to specify path to dockerfile since multiple dockerfiles exist in repo
-      dockerFile: "./$(sourceRoot)/Dockerfile"
+      dockerFile: "./$(sourceRoot)/Dockerfile-cloud"
       # Specify name and version of the final image
       imageName: "$(imageName)"
 

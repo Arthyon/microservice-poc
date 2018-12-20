@@ -1,7 +1,0 @@
-pool:
-  vmImage: "Ubuntu 16.04"
-
-# Build and test the whole system
-steps:
-  - script: docker-compose -f docker-compose.yml build
-    displayName: "Build and test"
