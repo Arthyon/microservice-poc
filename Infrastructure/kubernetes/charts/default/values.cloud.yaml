@@ -3,7 +3,7 @@ inAzure: true
 # Information about Azure Container Registry Secrets
 # Used to authenticate when pulling images
 registry:
-  secretName: regSecret
+  secretName: #{secretName}
 
 # Pull new images if not present
 imagePullPolicy: IfNotPresent
