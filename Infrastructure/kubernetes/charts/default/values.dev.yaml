@@ -6,7 +6,7 @@ imagePullPolicy: Never
 # Create a file 'local.yaml' and set this to the correct base path for your machine
 mountBasePath: "Please set in local.yaml"
 
-# Can change public port. This is the port used to call all services
+# Specify internal port to reach our ingress.
 ingress:
   nodePort: 30010
 

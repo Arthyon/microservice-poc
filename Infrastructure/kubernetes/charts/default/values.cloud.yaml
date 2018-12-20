@@ -8,8 +8,10 @@ registry:
 # Pull new images if not present
 imagePullPolicy: IfNotPresent
 
-# Specify internal port to reach our cluster (the ingress)
 ingress:
+  # Specify external port to reach our cluster (the ingress)
+  #publicIp: #{publicIp}
+  # For now, we will specify internal port
   nodePort: 30010
 
 # Service 1 Prod specific settings
