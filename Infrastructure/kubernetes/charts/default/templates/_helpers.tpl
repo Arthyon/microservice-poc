@@ -2,7 +2,7 @@
 Volume mount for local development
 */}}
 {{- define "default.volumeMounts" -}}
-{{- if .val -}}
+{{- if .basePath -}}
 volumeMounts:
   - mountPath: {{ .val.localVolume.containerPath }}
     name: {{ .val.localVolume.mountName }}
@@ -13,7 +13,7 @@ volumeMounts:
 Volumes for local development
 */}}
 {{- define "default.volumes" -}}
-{{- if .val -}}
+{{- if .basePath -}}
 volumes:
   - name: {{ .val.localVolume.mountName }}
     hostPath:
