@@ -6,8 +6,10 @@ imagePullPolicy: Never
 # Create a file 'local.yaml' and set this to the correct base path for your machine
 mountBasePath: "Please set in local.yaml"
 
-# Specify internal port to reach our ingress.
 ingress:
+  # Set as nodeport to be able to access on localhost
+  type: NodePort
+  # Specify internal port to reach our ingress.
   nodePort: 30010
 
 # Service 1 Dev specific settings
@@ -19,6 +21,8 @@ service1:
   type: NodePort
   # List of ports to expose
   ports:
+    - name: app-port
+      port: 8001
     - name: debug-port
       port: 9229
       nodePort: 30006 # This is the port used when attaching debugger. Should be unique across all services

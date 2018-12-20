@@ -9,10 +9,8 @@ registry:
 imagePullPolicy: IfNotPresent
 
 ingress:
-  # Specify external port to reach our cluster (the ingress)
-  #publicIp: #{publicIp}
-  # For now, we will specify internal port
-  nodePort: 30010
+  # Combined with inAzure-flag, this creates an internal loadbalancer in AKS
+  type: LoadBalancer
 
 # Service 1 Prod specific settings
 service1:

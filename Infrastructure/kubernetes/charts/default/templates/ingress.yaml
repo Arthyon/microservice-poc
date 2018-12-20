@@ -31,17 +31,13 @@ metadata:
     service.beta.kubernetes.io/azure-load-balancer-internal: "true"
     {{- end}}
 spec:
-  type: LoadBalancer
-  {{ if .Values.ingress.publicIp -}}
-  loadBalancerIP: {{ .Values.ingress.publicIp }}
-  ports:
-    - port: 80
-  {{ else -}}
+  type: {{ .Values.ingress.type }}
   ports:
     - name: http
       port: 80
+      {{- if .Values.ingress.nodePort }}
       nodePort: {{ .Values.ingress.nodePort }}
-  {{ end -}}
+      {{- end }}
   selector:
     app: ingress-nginx
 ---
