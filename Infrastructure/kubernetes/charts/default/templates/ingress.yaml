@@ -78,7 +78,7 @@ spec:
                   fieldPath: metadata.namespace
           args:
             - /nginx-ingress-controller
-            - --default-backend-service=default/nginx-default-backend
+            - --default-backend-service={{.Release.Namespace}}/nginx-default-backend
             - --configmap={{.Release.Namespace}}/nginx-ingress-config
 ---
 kind: Service
