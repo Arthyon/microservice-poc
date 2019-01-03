@@ -25,7 +25,7 @@ if($revision) {
   Write-Host "Revision $apiRevision already exists:"
   Write-verbose $revision -verbose
 
-  if($rev.IsCurrent) {
+  if($revision.IsCurrent) {
     Write-Host "Revision is already current. No need to do anything"
     exit
   }
