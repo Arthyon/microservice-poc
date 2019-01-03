@@ -2,7 +2,7 @@ pool:
   vmImage: "Ubuntu 16.04"
 
 # This is actually the build number format specifier
-name: $(Date:yyyyMMdd)$(Rev:.r)
+name: $(Date:yyyyMMdd)$(Rev:-r)
 
 # Create intermediate variables based on variables set in Azure Devops
 variables:
@@ -36,3 +36,15 @@ steps:
     inputs:
       command: "push"
       imageName: "$(imageName)"
+
+  # Task to copy api specification to artifact directory
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: "$(sourceroot)"
+      contents: "api.swagger.json"
+      targetFolder: $(Build.ArtifactStagingDirectory)
+  # Task to publish artifact directory (making them available in deploy)
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: $(Build.ArtifactStagingDirectory)
+      artifactName: specification

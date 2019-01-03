@@ -2,13 +2,19 @@ pool:
   vmImage: "Ubuntu 16.04"
 
 # This is actually the build number format specifier
-name: $(Date:yyyyMMdd)$(Rev:.r)
+name: $(Date:yyyyMMdd)$(Rev:-r)
 
 steps:
   # Task to copy kubernetes configuration to artifact directory
   - task: CopyFiles@2
     inputs:
       sourceFolder: "Infrastructure/kubernetes/charts/default/"
+      contents: "**/*"
+      targetFolder: $(Build.ArtifactStagingDirectory)
+  # Task to copy apim update script to artifact directory
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: "Infrastructure/apim/"
       contents: "**/*"
       targetFolder: $(Build.ArtifactStagingDirectory)
   # Task to publish artifact directory (making them available in deploy)

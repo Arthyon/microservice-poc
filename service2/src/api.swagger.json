@@ -1,0 +1,49 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Service 2",
+    "version": "1.0"
+  },
+  "host": "microservicepoc.azure-api.net",
+  "basePath": "/api/service2",
+  "schemes": ["https"],
+  "securityDefinitions": {
+    "apiKeyHeader": {
+      "type": "apiKey",
+      "name": "Ocp-Apim-Subscription-Key",
+      "in": "header"
+    },
+    "apiKeyQuery": {
+      "type": "apiKey",
+      "name": "subscription-key",
+      "in": "query"
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ],
+  "paths": {
+    "/api/values": {
+      "get": {
+        "description": "Get values",
+        "operationId": "get-values",
+        "summary": "Get values",
+        "responses": {
+          "200": {
+            "description": "",
+            "examples": {
+              "application/json": "[\n  \"value0\", \n  \"value1\",\n  \"value2\",\n  \"value2\",\n]"
+            }
+          }
+        },
+        "produces": ["application/json"]
+      }
+    }
+  },
+  "tags": []
+}
