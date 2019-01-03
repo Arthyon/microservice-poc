@@ -1,13 +1,16 @@
 Param(
-  [string] $apiManagementRg,
-  [string] $apiManagementName,
-  [string] $kubernetesUrl, # ip to kubernetes (with protocol)
-  [string] $swaggerFilePath, # path to swagger spec
-  [string] $apiRevision, # Build number
-  [string] $apiId, # e.g. service-2
-  [string] $apiSuffix, # e.g. api/service2
-  [string] $apiName # e.g. Service 2
+  [string]    $apiManagementRg,
+  [string]    $apiManagementName,
+  [string]    $kubernetesUrl, # ip to kubernetes (with protocol)
+  [string]    $swaggerFilePath, # path to swagger spec
+  [string]    $apiRevision, # Build number
+  [string[]]  $products,
+  [string]  $apiId, # e.g. service-2
+  [string]  $apiSuffix, # e.g. api/service2
+  [string]  $apiName # e.g. Service 2
 )
+# TODO This script won't work, as adding products to revision does not currently have any effect
+# This should be reported to MS
 
 # In regular Powershell:
 # Connect-AzureRmAccount - Log in
@@ -40,9 +43,17 @@ if($revision) {
 
   # Update ServiceUrl from deploy. Cannot use url from swagger file
   $ServiceUrl = "$kubernetesUrl/$apiSuffix"
-  Set-AzureRmApiManagementApiRevision -ApiRevision "$apiRevision" -Context $ApiMgmtContext -ApiId "$apiId" -ServiceUrl "$ServiceUrl" -Name "$apiName" -Protocols @('https')
+  # Set-AzureRmApiManagementApiRevision -ApiRevision "$apiRevision" -Context $ApiMgmtContext -ApiId "$apiId" -ServiceUrl "$ServiceUrl" -Name "$apiName" -Protocols @('https')
   # ServiceUrl: url to backend (kubernetes)
   # Protocols: List of protocols available in APIM (not kubernetes)
+
+  # Apply products to revision
+  foreach($product in $products){
+    Write-Host "Applying api to product $product"
+    Add-AzureRmApiManagementApiToProduct -Context $ApiMgmtContext -ProductId $product -ApiId "$apiId;rev=$apiRevision"
+
+  }
+
 }
 
 Write-Host "Making revision $apiRevision active"
