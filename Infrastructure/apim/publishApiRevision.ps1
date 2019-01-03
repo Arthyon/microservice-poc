@@ -17,13 +17,13 @@ Param(
 
 $ApiMgmtContext = New-AzureRmApiManagementContext -ResourceGroupName "$apiManagementRg" -ServiceName "$apiManagementName"
 
-Write-verbose "$ApiMgmtContext" -verbose
+Write-Host ($ApiMgmtContext | Format-List | Out-String)
 
 $revision = Get-AzureRmApiManagementApiRevision -Context $ApiMgmtContext -ApiId "$apiId" -ApiRevision "$apiRevision" -ErrorAction SilentlyContinue
 
 if($revision) {
   Write-Host "Revision $apiRevision already exists:"
-  Write-verbose $revision -verbose
+  Write-Host ($revision | Format-List | Out-String)
 
   if($revision.IsCurrent) {
     Write-Host "Revision is already current. No need to do anything"
@@ -40,7 +40,7 @@ if($revision) {
 
   # When backend does not answer on https, the next lines are needed
   # -------------
-  $ServiceUrl = $kubernetesUrl + $apiSuffix
+  $ServiceUrl = "$kubernetesUrl/$apiSuffix"
 
   Set-AzureRmApiManagementApiRevision -ApiRevision "$apiRevision" -Context $ApiMgmtContext -ApiId "$apiId" -ServiceUrl "$ServiceUrl" -Name "$apiName" -Protocols @('https')
   # ServiceUrl: url to backend (kubernetes)
