@@ -37,7 +37,7 @@
           {
             "name": "userid",
             "in": "path",
-            "description": "The id of the user",
+            "description": "The id of a user",
             "required": true,
             "type": "string"
           }

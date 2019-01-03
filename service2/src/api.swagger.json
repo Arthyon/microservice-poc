@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "host": "microservicepoc.azure-api.net",
-  "basePath": "/service-2",
+  "basePath": "/api/service2",
   "schemes": ["https"],
   "securityDefinitions": {
     "apiKeyHeader": {
