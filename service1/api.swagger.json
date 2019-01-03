@@ -1,0 +1,92 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Service 1",
+    "version": "1.0"
+  },
+  "host": "microservicepoc.azure-api.net",
+  "basePath": "/api/service1",
+  "schemes": ["https"],
+  "securityDefinitions": {
+    "apiKeyHeader": {
+      "type": "apiKey",
+      "name": "Ocp-Apim-Subscription-Key",
+      "in": "header"
+    },
+    "apiKeyQuery": {
+      "type": "apiKey",
+      "name": "subscription-key",
+      "in": "query"
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ],
+  "paths": {
+    "/user/{userid}": {
+      "get": {
+        "description": "get User",
+        "operationId": "get-user",
+        "summary": "get User",
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "path",
+            "description": "The id of the user",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "a Great! testpayload",
+            "examples": {
+              "application/json": {
+                "test": "dwadwa2",
+                "usr": "1234",
+                "headers": {
+                  "host": "13.79.21.67",
+                  "x-request-id": "c214c55f34e04a9d873dafc8b816cc46",
+                  "x-real-ip": "10.240.0.4",
+                  "x-forwarded-for": "10.240.0.4",
+                  "x-forwarded-host": "13.79.21.67",
+                  "x-forwarded-port": "80",
+                  "x-forwarded-proto": "http",
+                  "x-original-uri": "/api/service1/user/1234",
+                  "x-scheme": "http",
+                  "user-agent": "PostmanRuntime/7.4.0",
+                  "accept": "*/*",
+                  "accept-encoding": "gzip, deflate"
+                }
+              }
+            }
+          }
+        },
+        "produces": ["application/json"]
+      }
+    },
+    "/test": {
+      "get": {
+        "operationId": "test-mock",
+        "summary": "Test mock",
+        "responses": {
+          "200": {
+            "description": "",
+            "examples": {
+              "application/json": {
+                "test": "hei"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"]
+      }
+    }
+  },
+  "tags": []
+}
