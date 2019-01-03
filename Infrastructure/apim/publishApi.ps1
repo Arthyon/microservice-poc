@@ -13,6 +13,17 @@ $ApiMgmtContext = New-AzureRmApiManagementContext -ResourceGroupName "$apiManage
 
 Write-Host ($ApiMgmtContext | Format-List | Out-String)
 
+$api = Get-AzureRmApiManagementApi -Context $ApiMgmtContext -ApiId "$apiId" -ErrorAction SilentlyContinue
+if($api){
+  Write-Host "Found existing api"
+  Write-Host ($api | Format-List | Out-String)
+
+  if($api.Description -eq "$buildNumber") {
+    Write-Host "Api version is already using build $buildNumber. Exiting"
+    exit
+  }
+}
+
 Write-Host "Importing new specification for api $apiId"
 
 Import-AzureRmApiManagementApi -Context $ApiMgmtContext -SpecificationFormat "Swagger" -SpecificationPath "$swaggerFilePath" -Path "$apiSuffix" -ApiId "$apiId"
@@ -21,6 +32,6 @@ Import-AzureRmApiManagementApi -Context $ApiMgmtContext -SpecificationFormat "Sw
 $ServiceUrl = "$kubernetesUrl/$apiSuffix"
 Write-Host "Updating api with Service Url $ServiceUrl"
 
-Set-AzureRmApiManagementApi -Context $ApiMgmtContext -ApiId "$apiId" -ServiceUrl "$ServiceUrl" -Name "$apiName" -Protocols @('https') -Description "Current version: $buildNumber"
+Set-AzureRmApiManagementApi -Context $ApiMgmtContext -ApiId "$apiId" -ServiceUrl "$ServiceUrl" -Name "$apiName" -Protocols @('https') -Description "$buildNumber"
 # ServiceUrl: url to backend (kubernetes)
 # Protocols: List of protocols available in APIM (not kubernetes)
