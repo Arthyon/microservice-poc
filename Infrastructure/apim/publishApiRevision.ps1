@@ -19,7 +19,7 @@ $ApiMgmtContext = New-AzureRmApiManagementContext -ResourceGroupName "$apiManage
 
 Write-verbose "$ApiMgmtContext" -verbose
 
-$revision = Get-AzureRmApiManagementApiRevision -Context $ApiMgmtContext-ApiId "$apiId" -ApiRevision "$apiRevision" -ErrorAction SilentlyContinue
+$revision = Get-AzureRmApiManagementApiRevision -Context $ApiMgmtContext -ApiId "$apiId" -ApiRevision "$apiRevision" -ErrorAction SilentlyContinue
 
 if($revision) {
   Write-Host "Revision $apiRevision already exists:"
