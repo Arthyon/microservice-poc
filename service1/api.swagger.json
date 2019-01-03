@@ -44,10 +44,10 @@
         ],
         "responses": {
           "200": {
-            "description": "a Great! testpayload",
+            "description": "a testpayload",
             "examples": {
               "application/json": {
-                "test": "dwadwa2",
+                "test": "dwadwa25",
                 "usr": "1234",
                 "headers": {
                   "host": "13.79.21.67",
@@ -63,23 +63,6 @@
                   "accept": "*/*",
                   "accept-encoding": "gzip, deflate"
                 }
-              }
-            }
-          }
-        },
-        "produces": ["application/json"]
-      }
-    },
-    "/test": {
-      "get": {
-        "operationId": "test-mock",
-        "summary": "Test mock",
-        "responses": {
-          "200": {
-            "description": "",
-            "examples": {
-              "application/json": {
-                "test": "hei"
               }
             }
           }

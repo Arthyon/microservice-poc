@@ -38,16 +38,11 @@ if($revision) {
   # Revision cannot use dot in name.
   Import-AzureRmApiManagementApi -Context $ApiMgmtContext -SpecificationFormat "Swagger" -SpecificationPath "$swaggerFilePath" -Path "$apiSuffix" -ApiId "$apiId" -ApiRevision "$apiRevision"
 
-  # When backend does not answer on https, the next lines are needed
-  # -------------
+  # Update ServiceUrl from deploy. Cannot use url from swagger file
   $ServiceUrl = "$kubernetesUrl/$apiSuffix"
-
   Set-AzureRmApiManagementApiRevision -ApiRevision "$apiRevision" -Context $ApiMgmtContext -ApiId "$apiId" -ServiceUrl "$ServiceUrl" -Name "$apiName" -Protocols @('https')
   # ServiceUrl: url to backend (kubernetes)
   # Protocols: List of protocols available in APIM (not kubernetes)
-
-  ## -----------
-
 }
 
 Write-Host "Making revision $apiRevision active"
