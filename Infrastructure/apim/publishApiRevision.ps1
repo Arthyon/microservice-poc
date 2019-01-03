@@ -3,10 +3,10 @@ Param(
   [string] $apiManagementName,
   [string] $kubernetesUrl, # ip to kubernetes (with protocol)
   [string] $swaggerFilePath, # path to swagger spec
-  [string] $apiRevision # Build number
+  [string] $apiRevision, # Build number
   [string] $apiId, # e.g. service-2
   [string] $apiSuffix, # e.g. api/service2
-  [string] $apiName, # e.g. Service 2
+  [string] $apiName # e.g. Service 2
 )
 
 # In regular Powershell:
