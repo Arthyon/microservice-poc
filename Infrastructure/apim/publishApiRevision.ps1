@@ -32,4 +32,4 @@ Set-AzureRmApiManagementApiRevision -ApiRevision "$apiRevision" -Context $ApiMgm
 ## -----------
 
 # Create a release, making the new revision current
-New-AzureRmApiManagementApiRelease -Context $ApiMgmtContext -ApiId "$apiId" -ApiRevision "$apiRevision"
+New-AzureRmApiManagementApiRelease -Context $ApiMgmtContext -ApiId "$apiId" -ApiRevision "$apiRevision" -Note "Current revision: $apiRevision"
