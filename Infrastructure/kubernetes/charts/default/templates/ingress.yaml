@@ -7,6 +7,9 @@ data:
   ssl-redirect: "false"
   hsts: "false"
   disable-ipv6: "true"
+  {{- if .Values.ingress.whitelist }}
+  whitelist-source-range: {{.Values.ingress.whitelist}}
+  {{- end }}
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -26,12 +29,11 @@ apiVersion: v1
 metadata:
   namespace: {{.Release.Namespace}}
   name: ingress-nginx
-  annotations:
-    {{- if .Values.inAzure}}
-    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
-    {{- end}}
 spec:
   type: {{ .Values.ingress.type }}
+  {{- if .Values.ingress.externalIp }}
+  loadBalancerIP: {{ .Values.ingress.externalIp }}
+  {{- end }}
   ports:
     - name: http
       port: 80
