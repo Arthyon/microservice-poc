@@ -1,0 +1,10 @@
+{
+  "apps": [
+    {
+      "name": "handover-options",
+      "script": "./dist/server.js",
+      "exec_mode": "cluster",
+      "source_map_support": true
+    }
+  ]
+}

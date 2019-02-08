@@ -45,3 +45,26 @@ service2:
     containerPath: /code/app
     localPath: service2/src
     mountName: code
+
+# handover-options specific settings
+handoverOptions:
+  version: dev
+  # Name of the created image using 'docker build'
+  image: microservices/handover-options
+  # We need to use NodePort in dev to expose debug port
+  type: NodePort
+  # List of ports to expose
+  ports:
+    - name: app-port
+      port: 8002
+    - name: debug-port
+      port: 9229
+      nodePort: 30007 # This is the port used when attaching debugger. Should be unique across all services
+  # To enable frictionless developing, we must mount local volume in container
+  localVolume:
+    # Path to mount inside container. Specified in Dockerfile
+    containerPath: /app
+    # Local path from root of project to mount
+    localPath: handover-options
+    # A unique identifier
+    mountName: code
