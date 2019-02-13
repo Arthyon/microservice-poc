@@ -1,0 +1,66 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Stores",
+    "version": "1.0"
+  },
+  "host": "microservicepoc.azure-api.net",
+  "basePath": "/api/stores",
+  "schemes": ["https"],
+  "securityDefinitions": {
+    "apiKeyHeader": {
+      "type": "apiKey",
+      "name": "Ocp-Apim-Subscription-Key",
+      "in": "header"
+    },
+    "apiKeyQuery": {
+      "type": "apiKey",
+      "name": "subscription-key",
+      "in": "query"
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ],
+  "paths": {
+    "/{chainId}": {
+      "get": {
+        "description": "get stores for a chain",
+        "operationId": "get-stores",
+        "summary": "get a list of all stores",
+        "responses": {
+          "200": {
+            "description": "a testpayload",
+            "examples": {
+              "application/json": {
+                "test": "dwadwa25",
+                "usr": "1234",
+                "headers": {
+                  "host": "13.79.21.67",
+                  "x-request-id": "c214c55f34e04a9d873dafc8b816cc46",
+                  "x-real-ip": "10.240.0.4",
+                  "x-forwarded-for": "10.240.0.4",
+                  "x-forwarded-host": "13.79.21.67",
+                  "x-forwarded-port": "80",
+                  "x-forwarded-proto": "http",
+                  "x-original-uri": "/api/handover-options",
+                  "x-scheme": "http",
+                  "user-agent": "PostmanRuntime/7.4.0",
+                  "accept": "*/*",
+                  "accept-encoding": "gzip, deflate"
+                }
+              }
+            }
+          }
+        },
+        "produces": ["application/json"]
+      }
+    }
+  },
+  "tags": []
+}

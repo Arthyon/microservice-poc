@@ -1,0 +1,78 @@
+﻿{
+	"storeSearch": {
+		"alias": "ng_store_search",
+		"chainAliases": {
+			"1300": "ng_stores_1300",
+			"1100": "ng_stores_1100",
+			"1210": "ng_stores_1210",
+			"1220": "ng_stores_1220"
+		},
+		"type": "store",
+		"staticFilters": {
+			"termFilters": {
+				"store": {
+					"field": "storeId",
+					"term": "7080001287948",
+					"default": false
+				}
+			}
+		},
+		"size": 20,
+		"scrollSize": 200
+	},
+	"findStoreSearch": {
+		"alias": "ng_findstores_search",
+		"chainAliases": {
+			"1100": "ng_findstores_1100",
+			"1210": "ng_findstores_1210",
+			"1220": "ng_findstores_1220",
+			"1270": "ng_findstores_1270",
+			"1300": "ng_findstores_1300",
+			"1320": "ng_findstores_1320"
+		},
+		"type": "store",
+		"staticFilters": {
+			"termFilters": {
+				"store": {
+					"field": "storeId",
+					"term": "7080001287948",
+					"default": false
+				}
+			}
+		},
+		"size": 20,
+		"scrollSize": 1000,
+		"returnFields": {
+			"suggest": [
+				"id",
+				"name",
+				"openinghours.isopenonsunday",
+				"zipcode"
+			]
+		},
+		"cache": {
+			"maxAge": 3600
+		}
+	},
+	"pickupPointSearch": {
+		"alias": "ng_pickup_search",
+		"chainAliases": {
+			"1300": "ng_pickup_1300",
+			"1100": "ng_pickup_1100",
+			"1210": "ng_pickup_1210",
+			"1220": "ng_pickup_1220"
+		},
+		"type": "pickup",
+		"staticFilters": {
+			"termFilters": {
+				"store": {
+					"field": "storeId",
+					"term": "7080001287948",
+					"default": false
+				}
+			}
+		},
+		"size": 20,
+		"scrollSize": 200
+	}
+}

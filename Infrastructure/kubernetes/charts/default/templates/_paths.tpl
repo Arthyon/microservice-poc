@@ -2,6 +2,10 @@
 Defines the ingress paths
 */}}
 {{- define "default.ingress.paths" -}}
+- path: /api/stores
+  backend:
+    serviceName: stores
+    servicePort: 8001
 - path: /api/handover-options
   backend:
     serviceName: handover-options

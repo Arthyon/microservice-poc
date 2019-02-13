@@ -1,0 +1,43 @@
+{
+	"CACHE_SERVER_PUSH_URI": "https://platform-cacher-dev.ngdata.no/report/push-report",
+	"REJECT_INVALID_NGT_SSL_CERT": false,
+	"NEW_RELIC_APP_NAME": "ng-azure-rest-api-dev",
+	"NODE_TLS_REJECT_UNAUTHORIZED": 0,
+	"LOG_LEVEL": "DEBUG",
+	"payex_return_url": "https://platform-rest-dev.ngdata.no/order/verify",
+	"logging": {
+		"eventhub": {
+			"hubName": "ng-log-hub-dev"
+		}
+	},
+	"storageApiRedis": {
+		"host": "storage-api-dev.redis.cache.windows.net",
+		"port": 6379
+	},
+	"caching": {
+		"redis": {
+			"host": "ngredisdev.redis.cache.windows.net",
+			"port": 6379
+		}
+	},
+	"search": {
+		"elasticsearch": {
+			"hosts": ["10.3.1.254:9200"],
+			"maxSockets": 1000,
+			"log": "error"
+		}
+	},
+	"redisCartSync": {
+		"host": "platform-cart-sync-dev.redis.cache.windows.net",
+		"port": 6379
+	},
+	"CLICK_AND_COLLECT": {
+		"FALLBACK_STORES": {
+			"1100": "7080001110529",
+			"1300": "7080001271961",
+			"1210": "7080001266110",
+			"1220": "7080001312459"
+		},
+		"validChainIds": ["1100", "1210", "1220", "1300"]
+	}
+}

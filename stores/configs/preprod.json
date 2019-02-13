@@ -1,0 +1,176 @@
+{
+	"REDIS_URI": "ngredispreprod.redis.cache.windows.net",
+	"PLATFORM_STORAGE_ACCOUNT": "ngplatformstoragepreprod",
+	"JERV_STORAGE_ACCOUNT": "pilot4preprod",
+	"REDIS_PORT": "6379",
+	"REJECT_INVALID_NGT_SSL_CERT": true,
+	"CACHE_SERVER_PUSH_URI": "https://platform-cacher-preprod.ngdata.no/report/push-report",
+	"LOG_LEVEL": "DEBUG",
+	"payex_return_url": "https://platform-rest-preprod.ngdata.no/order/verify",
+	"pretty-print": false,
+	"show stack errors": false,
+	"long stack traces": false,
+	"logging": {
+		"eventhub": {
+			"hubName": "ng-log-hub-preprod"
+		},
+		"blob": {
+			"azure_storage_account": "nglogpreprod"
+		}
+	},
+	"caching": {
+		"redis": {
+			"host": "ngredispreprod.redis.cache.windows.net",
+			"port": 6379
+		}
+	},
+	"search": {
+		"elasticsearch": {
+			"hosts": ["10.3.2.254:9200"],
+			"maxSockets": 100,
+			"log": "error"
+		}
+	},
+	"authorizationKeys": {
+		"ngApplicationKeys": [
+			{
+				"name": "temp-click-and-collect-component-key",
+				"hash": "66b50f15a98cd511270ea662a2f6968548c2ba05",
+				"note": "Temp key used by click & collect components"
+			},
+			{
+				"name": "preprodkey2015-1",
+				"hash": "ddeccc8828ae978e602c23d020dac38dac07d84c",
+				"note": "Used in preprod. Hash is SHA1 of key. Key is stored secretly."
+			},
+			{
+				"name": "generic-preprodkey-2016-6",
+				"hash": "f7febf2c3c9aaaf2613328bd5608d65fe97d3534",
+				"note": "Used by all chains in preprod"
+			},
+			{
+				"name": "kiwi-app",
+				"hash": "9224ffe52d3551bd93af56e62bcdad7c2505d0ac",
+				"note": "Used by kiwi app in preprod",
+				"last-updated": "24.08 2016"
+			},
+			{
+				"name": "kiwi-web(EPI)",
+				"hash": "fa20be51d8951d94ca18d5abe0782f38fe37ca6f",
+				"note": "Used by kiwi app in preprod",
+				"last-updated": "24.08 2016"
+			},
+			{
+				"name": "meny-app",
+				"hash": "e946bc2b6b261839455b597963b798207fb29936",
+				"note": "Used by Meny app in preprod",
+				"last-updated": "24.08 2016"
+			},
+			{
+				"name": "meny-web(epi)",
+				"hash": "02734e0634d2a4d4c223e5b575094192a1d72f2b",
+				"note": "Used by Meny web in preprod",
+				"last-updated": "24.08 2016"
+			},
+			{
+				"name": "spar-web(epi)",
+				"hash": "9328e0f7f9a0d6fe6045a3405223af301354aebd",
+				"note": "Used by Spar web in preprod",
+				"last-updated": "25.08 2016"
+			},
+			{
+				"name": "spar-app",
+				"hash": "c3ff6b2fa3761754b8029c89b29e4f04af180093",
+				"note": "Used by Spar app in preprod",
+				"last-updated": "25.08 2016"
+			},
+			{
+				"name": "joker-web",
+				"hash": "51b9215feb70b670413e0bb4efd8d2e86eb98129",
+				"note": "Used by Joker web in preprod",
+				"last-updated": "25.08 2016"
+			},
+			{
+				"name": "jacobs-web",
+				"hash": "d05a0e1e464c75d8a49b3a2b712ca578adf80068",
+				"note": "Used by Jacobs web in preprod",
+				"last-updated": "25.08 2016"
+			},
+			{
+				"name": "trumf-web",
+				"hash": "03025b19d5b02f77da6e3116cc533bc07a305d00",
+				"note": "Used by Trumf web in preprod",
+				"last-updated": "05.10 2016"
+			},
+			{
+				"name": "nærbutikken-web",
+				"hash": "4ae50d2517f03042e176d92ef778fa6e0317fa4f",
+				"note": "Used by Nærbutikken web in preprod",
+				"last-updated": "12.10 2016"
+			}
+		],
+		"extApplicationKeys": [
+			{
+				"name": "TM",
+				"displayName": "Trines Matblogg",
+				"hash": "3e84f0bd889e9e74e5914deab66fdfad4d2d3047",
+				"note": "Used by TM in preprod",
+				"last-updated": "16.06 2017"
+			},
+			{
+				"name": "GN",
+				"displayName": "Godt.no",
+				"hash": "35721ff96c7e30e4736fcd3d2c8f7437617a8c43",
+				"note": "Used by GN in preprod",
+				"last-updated": "19.09 2017"
+			},
+			{
+				"name": "TK",
+				"displayName": "Tine Kjøkken",
+				"hash": "670bbe6b6d9f915c71e3274dd7b6a7ae24f238fc",
+				"note": "Used by TK in preprod",
+				"last-updated": "15.10.2018"
+			},
+			{
+				"name": "VG",
+				"displayName": "vg.no",
+				"hash": "cfb77d4a197385ebb4b769e9cf83de9c84d68449",
+				"note": "Used by VG in preprod",
+				"last-updated": "21.01.2019"
+			}
+		],
+		"syncApplicationKeys": [
+			{
+				"name": "sync-key-1",
+				"hash": "50095d6bf5b2a6fff3b26926c1b67da027fd9175",
+				"note": "ng-azure-rest-api-preprod.azurewebsites.net - Brukes av Rest-api"
+			}
+		]
+	},
+	"azure_cosmos": {
+		"uri": "https://ng-docdb-preprod.documents.azure.com:443/",
+		"recipes": {
+			"db_name": "recipes",
+			"collection_name": "recipes"
+		},
+		"list_sync": {
+			"db_name": "shoppingLists",
+			"collection_name": "lists"
+		}
+	},
+	"redisCartSync": {
+		"host": "platform-cart-sync-preprod.redis.cache.windows.net",
+		"port": 6379
+	},
+	"OAM_TOKEN_URI": "https://oamtest.norgesgruppen.no/ms_oauth/oauth2/endpoints/oauthservice/tokens",
+	"CLICK_AND_COLLECT": {
+		"FALLBACK_STORES": {
+			"1100": "7080001110529",
+			"1300": "7080001271961",
+			"1210": "7080001266110",
+			"1220": "7080001230081"
+		},
+		"validChainIds": ["1100", "1210", "1220", "1300"],
+		"orderSyncMinDelay": 5
+	}
+}

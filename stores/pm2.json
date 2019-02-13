@@ -1,0 +1,23 @@
+{
+  "apps": [
+    {
+      "name": "stores",
+      "script": "./dist/server.js",
+      "node_args": ["--inspect=0.0.0.0:9229"],
+      "exec_mode": "fork",
+      "source_map_support": true,
+      "env": {
+        "NODE_ENV": "preprod",
+        "DEBUG_MODE": "true",
+				"LOG_LEVEL": "DEBUG",
+				"OAM_OAUTH2_CLIENT_SECRET": "SRqaivaGGRzD59SBo",
+				"ELASTICSEARCH_HOSTS": "10.3.2.254:9200",
+				"CLIENT_ID": "f9bbe506-4861-4910-8876-34b0ee4391a4",
+				"DOMAIN": "882c3105-af5d-4b6c-8ab1-d0271766eb79",
+				"APPLICATION_SECRET": "ijHj92tRcoXLsbwgkLxUjzRaKs6vvVwzHiJKe1TgBF0=",
+				"VAULT_NAME": "platform-api-preprod",
+				"payex_return_url": "http://localhost:3000/order/verify"
+      }
+    }
+  ]
+}

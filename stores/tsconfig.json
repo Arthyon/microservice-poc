@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2017",
+    "lib": ["es2017", "es2016", "dom"],
+    "noImplicitAny": false,
+    "sourceMap": true,
+    // "inlineSourceMap": true,
+    // "inlineSources": true,
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "strictNullChecks": true,
+  },
+  "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"],
+  "include": ["src/**/*.ts"]
+}

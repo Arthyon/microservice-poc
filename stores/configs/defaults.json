@@ -1,0 +1,206 @@
+{
+	"PLATFORM_STORAGE_ACCOUNT": "ngplatformstoragedev",
+	"AERA_CERT_NAME": "NG-TEST-V1.p12",
+	"JERV_STORAGE_ACCOUNT": "pilot4dev",
+	"APP_STATUS_KEY": "test",
+	"CACHE_UPDATE_SUBSCRIPTION": "cache_update_subscription",
+	"API_STATUS_KEY": "test",
+	"LOG_LEVEL": "DEBUG",
+	"CHAINS": [133, 1100, 1210, 1220, 1270, 1300, 1320],
+	"PORT": 3000,
+	"serverStatusAdminPassword": "xGKqlj+YKFb%*8zxjzuE$`Sr5Om?GDdC%B(GL]i1&`/q38v,JS[a);1!lm8",
+	"NGT_BASIC_TOKEN": "Basic J8ed0(tyAop206%JHP",
+	"NGT_CLICK_AND_COLLECT_BASIC_TOKEN": "Basic Y2NicnVrZXI6Y2NicnVrZXIyMDE0",
+	"REDIS_KEY": "5SziauARAm7mWus0zl3sfv4OwccMVEtwIh5vMgp/D7c=",
+	"AZURE_LOG_STORAGE_KEY": "SSXGXTtsKQFJWZFRJaO9lNTBEl5lo2a47FwBUuDASv0FcxOUK5pULXwLnoaFhI1BhBHfsUy+cKNeRLezKDh9yQ==",
+	"REST_COSMOS_PKEY": "8D+Mt3JPPGIx5ftc/fIuj+LFXlvx3M/wrwFEd4OjUdKNOHRV4YlhdduZ7UO4Vp1BTzCuShRDlNWYYhLEtRwG7g==",
+	"DISABLE_CACHE_WARMING": null,
+	"DISABLE_EVENTHUB_LOGGING": null,
+	"AZURE_EVENTHUB_KEY": "AwvEtjpEdIni4D8kiqJg3WHMCrSUr8RjSJTcE3Eh1q8=",
+	"CACHE_REFRESH_INTERVAL": 86400000,
+	"PLATFORM_STORAGE_KEY": "rIv6SgO4GLGQULCjXkOGvpXOSfIQGb/l5VArwkbRs4QHOa0bgYk0xA6oNt1V97uoxld4bvHHLJnHSteMuCH0qA==",
+	"defaultXRequestedWithHeaderValue": "no.norgesgruppen.platform",
+	"disable": {
+		"product-module": false
+	},
+	"ALERTS_MWT_WEBHOOK": "secret",
+	"ALERTS_ZOOPIT_WEBHOOK": "secret",
+	"ALERTS_NGT_EMAIL_RECIPIENT": "ngtsupport@norgesgruppen.no",
+	"send_grid_key": "secret",
+	"AERA_WALLET_SERVER": "https://api-staging.aerahost.com",
+	"AERA_SERVER": "https://ips-preprod.ihost.com:50443",
+	"jerv_payex_proxy": "https://preprod.pilot.meny.no",
+	"zoopitServer": "http://api.test.zoopit.no/v2",
+	"polldaddyServer": "https://api.polldaddy.com",
+	"ngt_server": "https://preprod.service-dk.norgesgruppen.no",
+	"ngt_oauth_server": "https://preprod.oauth.norgesgruppen.no",
+	"ngt_clickandcollect_server": "https://preprod.clickandcollect.norgesgruppen.no",
+	"ngt_old_axapta_server": "https://performance.service-dk.norgesgruppen.no",
+	"payex_agreement_soap_service": "https://external.externaltest.payex.com/PxAgreement/PxAgreement.asmx?wsdl",
+	"payex_order_soap_service": "https://external.externaltest.payex.com/pxorder/pxorder.asmx?wsdl",
+	"payex_return_url": "http://localhost:3000/order/verify",
+	"aera": {
+		"project_codes": {
+			"meny": "NGMENY",
+			"joker": "NGJOKER",
+			"spar": "NGSPAR"
+		},
+		"profile_groups": {
+			"meny": "NGMENY",
+			"joker": "NGJOKER",
+			"spar": "NGSPAR"
+		}
+	},
+	"show stack errors": true,
+	"long stack traces": true,
+	"pretty-print": true,
+	"logging": {
+		"error_requests_only": false,
+		"eventhub": {
+			"enabled": true,
+			"maxsize": 230000,
+			"hubNamespace": "ng-events",
+			"hubName": "ng-log-hub-dev",
+			"keyName": "Send",
+			"blacklist": ["req.headers.ng-rest-api-auth-key", "req.headers.authorization"],
+			"category": "connect"
+		},
+		"blob": {
+			"enabled": true,
+			"azure_storage_account": "nglogdev"
+		}
+	},
+	"caching": {
+		"environment": "preproduction",
+		"redis": {
+			"host": "127.0.0.1",
+			"port": 6379
+		}
+	},
+	"search": {
+		"environment": "local",
+		"epilasticAllowedIndices": ["narbutikken", "joker", "meny", "spar", "jacobs", "kiwi", "trumf"],
+		"elasticsearch": {
+			"hosts": ["10.3.1.254:9200"],
+			"sniffOnStart": false,
+			"sniffInterval": false,
+			"sniffOnConnectionFault": false,
+			"log": "error"
+		}
+	},
+	"authorizationKeys": {
+		"ngApplicationKeys": [
+			{
+				"name": "temp-click-and-collect-component-key",
+				"key": "7R92Q1t1Gx5WCwU",
+				"hash": "d009c0ffad776de40698e5c63297b2e3815b28e5",
+				"note": "Temp key used by click & collect components"
+			},
+			{
+				"name": "testkey-1",
+				"key": "ja4lH0k5RSN17Tt5fUPc1yZWWZKgq2YN",
+				"hash": "4041f50470d84071fbeb9dea9b762100b6a5047a",
+				"note": "Used for automated testing. Key is not a secret"
+			},
+			{
+				"name": "generic-devkey-2016-6",
+				"hash": "ce0aed0f17115b764fb96eddc451e17bea0fc53d",
+				"note": "Used by all chains in dev"
+			},
+			{
+				"name": "devkey2015-1",
+				"key": "(secret)",
+				"hash": "1675e3a98250ccf4eed19083caafbcbc1c988e7f",
+				"note": "ng-azure-rest-api-dev.azurewebsites.net - Brukes av Kiwi"
+			}
+		],
+		"extApplicationKeys": [
+			{
+				"name": "dev",
+				"displayName": "Development",
+				"key": "0ddd53a1-7d5d-4cbe-a0d0-357ab1eb4214",
+				"hash": "37cb90cb2b2f11713386c3d73710b0b5e9fabe37",
+				"note": "Used for testing external API calls"
+			}
+		],
+		"elevatedApplicationKeys": [
+			{
+				"name": "elevated-key-1",
+				"key": "(secret)",
+				"hash": "7a71cfbba6aed1d850ce9590c207608dfd5e3f8f",
+				"note": "Used for setting/changing data in key-value-storage"
+			}
+		],
+		"syncApplicationKeys": [
+			{
+				"name": "sync-key-1",
+				"hash": "570a901f29d190aea5593730edf02d6085631ef7",
+				"note": "ng-azure-rest-api-dev.azurewebsites.net - Brukes av Rest-api"
+			}
+		]
+	},
+	"azure_cosmos": {
+		"uri": "https://ng-docdb-dev.documents.azure.com:443/",
+		"recipes": {
+			"db_name": "recipes",
+			"collection_name": "recipes"
+		},
+		"list_sync": {
+			"db_name": "shoppingLists",
+			"collection_name": "lists"
+		},
+		"polls": {
+			"db_name": "polls",
+			"collection_name": "polls"
+		},
+		"orderstats": {
+			"db_name": "stats",
+			"collection_name": "orderstats"
+		},
+		"storedshoppinglist": {
+			"db_name": "storedshoppinglist",
+			"collection_name": "storedshoppinglist"
+		}
+	},
+	"ZOOPIT_AUTHKEY": [
+		{ "chain": "1210", "key": "aa94af66f2800fede049af4c4b0ccf06668a4ebb" },
+		{ "chain": "1220", "key": "761ad9fcd6fa623d34f501b84df223fee926905c" },
+		{ "chain": "1300", "key": "e36e5226bde8c10f3af422d3dd4fd5e6ad860bfd" }
+	],
+	"AERA_AUTH_KEY": "4crGrX6muh9GfUz7UZjNz6jXvtoYPA7O3I6blgCj",
+	"AERA_USERNAME": "74ded073-c1d2-4e1a-91e3-b490a761e277",
+	"AERA_PASSWORD": "MRtx!W4erFq4fp9eq3pNW-Hm",
+
+	"features": {
+		"jerv_check_duplicate_orders": true,
+		"enable_bags": true,
+		"auto_update_relevancy": false,
+		"enable_jerv_payex_proxy": false
+	},
+	"allChainIds": [1100, 1210, 1220, 1270, 1300, 1320, 1330],
+	"reachmee": {
+		"url": "https://site106.reachmee.com",
+		"prerelease": "https://prerelease.reachmee.com",
+		"installationId": "I011",
+		"customerName": "ng"
+	},
+	"DEFAULT_SOURCE": "crm",
+	"OAM_CLIENT_ID": "NGT_MakingWaves_B2B",
+	"OAM_CLIENT_SECRET": "SRqaivaGGRzD59SBo",
+	"OAM_TOKEN_URI": "https://oamtest.norgesgruppen.no/ms_oauth/oauth2/endpoints/oauthservice/tokens",
+	"OAM_SCOPES": "NGT-B2B.full NGT-B2B.info NGT-B2B.light",
+	"CLICK_AND_COLLECT": {
+		"FALLBACK_STORES": {
+			"1100": "0",
+			"1300": "7080001271961",
+			"1210": "7080001266110",
+			"1220": "7080001420567"
+		},
+		"validChainIds": ["1100", "1210", "1220", "1300"],
+		"orderSyncMinDelay": 10
+	},
+	"redisCartSync": {
+		"host": "127.0.0.1",
+		"port": 6379
+	}
+}

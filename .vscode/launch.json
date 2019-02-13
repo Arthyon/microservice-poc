@@ -41,6 +41,17 @@
         "pipeCwd": "${workspaceFolder}",
         "debuggerPath": "/vsdbg/vsdbg"
       }
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Stores (node)",
+      "port": 30008, // Port is port number exposed in values.dev.yaml
+      "address": "localhost",
+      "localRoot": "${workspaceFolder}/stores", // stores is physical path to service
+      "remoteRoot": "/app", // remoteRoot is path inside container (see Dockerfile)
+      "protocol": "inspector",
+      "sourceMaps": true
     }
   ]
 }

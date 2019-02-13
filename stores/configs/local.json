@@ -1,0 +1,33 @@
+{
+	"LOG_LEVEL": "DEBUG",
+	"ELASTICSEARCH_HOSTS":
+		"https://ng-azure-rest-api-dev:RLrrg63g1F0+aF@platform-es-dev.northeurope.cloudapp.azure.com:443",
+	"port": 3000,
+	"show stack errors": true,
+	"pretty-print": true,
+	"logging": {
+		"error_requests_only": false
+	},
+	"minimum framework version": "7.3.1",
+	"caching": {
+		"environment": "local",
+		"redis": {
+			"host": "127.0.0.1",
+			"port": 6379
+		}
+	},
+	"search": {
+		"environment": "local",
+		"elasticsearch": {
+			"hosts": ["10.3.1.254:9200"],
+			"sniffOnStart": false,
+			"sniffInterval": false,
+			"sniffOnConnectionFault": false,
+			"maxSockets": 100,
+			"log": "error"
+		}
+	},
+	"azure_documentdb_recipe_databaseId": "recipes",
+	"azure_documentdb_recipe_collectionId": "recipes",
+	"ORDER_STAT_KEY": "abba"
+}
