@@ -3,8 +3,26 @@ import * as express from "express";
 const inspector = require("inspector");
 const app = express();
 
-app.use("/handover-options", (req, res) => {
-    return res.status(200).json({ test: "handover-options", options: "none atm" });
+app.use("/:chain_id", (req, res, next) => {
+    const chainId = req.params.chain_id;
+
+    if (!chainId) {
+      next({code: 500, msg: "missing chainId"})
+    }
+
+    let data = '';
+    // http://stores.default.svc.cluster.local/handover-options
+    http.get(`http://ingress-nginx/api/stores/${chainId}`, response => {
+        response.on('data', chunk => {
+            data += chunk;
+        });
+        response.on('end', () => {
+          res.type("application/json");
+          return res.send(data);
+        });
+      }).on('error', err => {
+          next(err);
+      });
 });
 
 const server = http.createServer(app);
@@ -31,4 +49,4 @@ function gracefulShutdown() {
   }, 20 * 1000);
 }
 
-server.listen(8002, () => console.log("Server running on 8002"));
+server.listen(8001, () => console.log("Server running on 8001"));

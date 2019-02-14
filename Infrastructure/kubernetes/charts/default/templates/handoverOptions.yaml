@@ -24,7 +24,7 @@ spec:
           imagePullPolicy: {{ $.Values.imagePullPolicy }}
           image: {{ .image }}
           ports:
-            - containerPort: 8002
+            - containerPort: 8001
             - containerPort: 9229 # TODO Move this to values-file
           {{- include "default.volumeMounts" $mount | nindent 10 -}}
       {{- include "default.volumes" $mount | nindent 6 -}}

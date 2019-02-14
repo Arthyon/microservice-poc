@@ -12,6 +12,7 @@ COPY package.json /app
 COPY yarn.lock /app
 COPY tsconfig.json /app
 COPY pm2.json /app
+COPY .npmrc /app
 
 # Restore packages
 RUN yarn --frozen-lockfile

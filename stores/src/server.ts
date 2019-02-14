@@ -4,17 +4,16 @@ import { getAllStoresAsIStoreFull } from "./modules/services/stores";
 const inspector = require("inspector");
 const app = express();
 
-app.use("/:chain_Id", async (req, res) => {
-  //return res.status(200).json({ test: "stores", chainId2: "1300", msg: "test" });
-    // const chainId = req.params.chain_id;
+app.use("/:chain_id", async (req, res) => {
+    const chainId = req.params.chain_id;
     const options = {
-      chain_id: "1300",
+      chain_id: chainId,
     }
+
     try { 
-      console.log("try to get stores");
       const stores = await getAllStoresAsIStoreFull(options);
-      console.log("got stores. length: " + stores != null ? stores.length : 0);
-      return res.status(200).json({ test: "stores", chainId2: "1300", stores });
+
+      return res.status(200).json(stores);
     } catch (err) {
       console.log("error when trying to get stores");
       return res.status(500).json({ test: "stores", error: err });

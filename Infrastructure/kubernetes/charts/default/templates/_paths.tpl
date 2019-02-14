@@ -9,7 +9,7 @@ Defines the ingress paths
 - path: /api/handover-options
   backend:
     serviceName: handover-options
-    servicePort: 8002
+    servicePort: 8001
 - path: /api/service2/
   backend:
     serviceName: service2

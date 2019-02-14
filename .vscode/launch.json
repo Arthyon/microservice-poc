@@ -45,6 +45,17 @@
     {
       "type": "node",
       "request": "attach",
+      "name": "Handover options (node)",
+      "port": 30007, // Port is port number exposed in values.dev.yaml
+      "address": "localhost",
+      "localRoot": "${workspaceFolder}/handover-options", // stores is physical path to service
+      "remoteRoot": "/app", // remoteRoot is path inside container (see Dockerfile)
+      "protocol": "inspector",
+      "sourceMaps": true
+    }
+    {
+      "type": "node",
+      "request": "attach",
       "name": "Stores (node)",
       "port": 30008, // Port is port number exposed in values.dev.yaml
       "address": "localhost",
